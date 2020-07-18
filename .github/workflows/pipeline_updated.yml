@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-      - develop
-      - 'release/**'
 
 jobs:
   build-and-push:
@@ -31,39 +29,8 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
-
-    - if: steps.extract_branch.outputs.branch == 'develop'
-      name: DEV image 
-      id: build-dev-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: upmesh-backend
-        IMAGE_TAG: dev
-      run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/nodeapp/dev.Dockerfile .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-    - if: contains(steps.extract_branch.outputs.branch,'release/')
-      name: STAGE image
-      id: build-stage-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: upmesh-backend
-        IMAGE_TAG: stage
-      run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/nodeapp/stage.Dockerfile .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
     
-    - if: steps.extract_branch.outputs.branch == 'master'
-      name: MASTER image
+    - name: MASTER image
       id: build-master-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -76,24 +43,7 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/nodeapp/Dockerfile .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-    - if: steps.extract_branch.outputs.branch == 'develop' || contains(steps.extract_branch.outputs.branch,'release/')
-      name: DEV-Stage-Nginx image
-      id: build-dev-nginx-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: upmesh-backend
-        IMAGE_TAG: dev-nginx
-      run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/nginx/dev.Dockerfile .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-    - if: steps.extract_branch.outputs.branch == 'master'
-      name: Nginx image
+    - name: Nginx image
       id: build-nginx-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -106,24 +56,8 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/nginx/Dockerfile .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-    
-    - if: steps.extract_branch.outputs.branch == 'develop' || contains(steps.extract_branch.outputs.branch,'release/')
-      name: DEV-Stage-Mysql-Image
-      id: build-dev-mysql-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: upmesh-backend
-        IMAGE_TAG: dev-db
-      run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/db/dev.Dockerfile .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    - if: steps.extract_branch.outputs.branch == 'master'
-      name: MYSQL image
+    - name: MYSQL image
       id: build-mysql-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
