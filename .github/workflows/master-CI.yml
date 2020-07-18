@@ -6,6 +6,17 @@ on:
       - master
 
 jobs:
+  job1:
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
+    steps:
+    - id: step1
+      run: echo "::set-output name=test::hello"
+    - id: step2
+      run: echo "::set-output name=test::world"
   ECR-PUSH:
     name: Build Image and Push to ECR
     runs-on: ubuntu-latest
@@ -18,14 +29,6 @@ jobs:
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
-
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v2
-
-    - name: Echo branch name
-      shell: bash
-      run: echo steps.extract_branch.outputs.branch
-      id: echo_branch
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
