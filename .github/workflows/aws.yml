@@ -37,6 +37,7 @@ jobs:
     steps:
     - name: test0
       run: ls ./
+      working-directory: ./subfolder
     - name: test1
       run: ls ../
     - name: test2
@@ -47,6 +48,7 @@ jobs:
       run: ls ../test
     - name: test5
       run: ls ../../test
+    
       
 
     
