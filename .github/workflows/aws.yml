@@ -45,7 +45,8 @@ jobs:
       run: ls ../../../../
       
     - name: test3
-      run: ls ./
+      run: ls 
+      working-directory: ./
       
     - name: test4
       run: ls ../test
