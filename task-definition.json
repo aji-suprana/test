@@ -1,0 +1,79 @@
+{
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "inferenceAccelerators": [],
+    "containerDefinitions": [
+        {
+            "name": "db",
+            "image": "058434268238.dkr.ecr.ap-southeast-1.amazonaws.com/upmesh-backend:dev-db",
+            "hostname": "db",
+            "memory": 300,
+            "cpu":150,
+            "essential": true,
+            "mountPoints": [
+                {
+                  "sourceVolume": "efs",
+                  "containerPath": "/var/lib/mysql"
+                }
+              ],
+            "portMappings": [
+                {
+                    "containerPort": "3306",
+                    "hostPort": "3306",
+                    "protocol": "tcp"
+                }
+            
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "ECS-cluster",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "db-dev"
+                }
+            }
+        },
+        {
+            "name": "upmesh-backend-dev",
+            "hostname": "upmesh-backend-dev",
+            "image": "058434268238.dkr.ecr.ap-southeast-1.amazonaws.com/upmesh-backend:dev",
+            "resourceRequirements": null,
+            "essential": false,
+            "memory":300,
+            "cpu":150,
+            "portMappings": [
+                {
+                    "containerPort": "1335",
+                    "hostPort": "1335",
+                    "protocol": "tcp"
+                }
+                
+            ],
+            "links": [
+                "db"
+            ],
+            "environment": [
+                {
+                    "name": "WAIT_HOSTS",
+                    "value": "db:3306"
+                }
+            ],
+            "entryPoint": [
+                "sh",
+                "/usr/local/bin/dev-entrypoint.sh"
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "ECS-cluster",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "backend-dev"
+                }
+            }
+        }
+    ],
+    "taskRoleArn": "",
+    "family": "rest-template-sql",
+    "placementConstraints": []
+}
