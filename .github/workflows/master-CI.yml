@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v2
-
     - name: Checkout
       uses: actions/checkout@v1
 
@@ -21,6 +18,9 @@ jobs:
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
+
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v2
 
     - name: Echo branch name
       shell: bash
