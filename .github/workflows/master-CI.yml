@@ -1,4 +1,4 @@
-name: Building, Pushing and Deploying a docker image to Amazon ECR
+name: Continues Integration
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build-and-push:
+  ECR-PUSH:
     name: Build Image and Push to ECR
     runs-on: ubuntu-latest
 
@@ -17,6 +17,11 @@ jobs:
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+
+    - name: Echo branch name
+      shell: bash
+      run: echo steps.extract_branch.outputs.branch
       id: extract_branch
 
     - name: Configure AWS credentials
