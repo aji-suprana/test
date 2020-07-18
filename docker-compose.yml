@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+    db:
+        build:
+            context: .
+            dockerfile: docker/db/Dockerfile
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+        ports:
+            - 3306:3306
+        expose:
+            - "3306"
+        networks:
+            - app-network
+    backend:
+        build:
+            context: .
+            dockerfile: docker/nodeapp/Dockerfile
+        depends_on:
+            - db
+        ports:
+            - 1337:1337
+        expose:
+            - "1337"
+        links:
+            - db
+        networks:
+            - app-network
+        environment:
+            WAIT_HOSTS: db:3306
+
+networks:
+    app-network:
+        driver: bridge
