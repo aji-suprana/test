@@ -36,6 +36,6 @@ jobs:
 
     steps:
     - name: Checkout
-      run: ls ../../
+      run: ls ./
 
     
