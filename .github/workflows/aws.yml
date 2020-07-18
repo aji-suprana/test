@@ -41,5 +41,12 @@ jobs:
       run: ls ../
     - name: test2
       run: ls ../../
+    - name: test3
+      run: ls ./
+    - name: test4
+      run: ls ../test
+    - name: test5
+      run: ls ../../test
+      
 
     
