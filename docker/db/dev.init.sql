@@ -1,6 +1,0 @@
-CREATE USER 'upmesh'@'%' IDENTIFIED BY 'upmesh12345';
-GRANT ALL PRIVILEGES ON * . * TO 'upmesh'@'%';
-FLUSH PRIVILEGES;
-
-CREATE DATABASE upmesh_dev;
-CREATE DATABASE upmesh_stage;
