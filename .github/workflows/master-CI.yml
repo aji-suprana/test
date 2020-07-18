@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v2
+
     - name: Checkout
       uses: actions/checkout@v1
 
