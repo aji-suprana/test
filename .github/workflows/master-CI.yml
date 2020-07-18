@@ -22,7 +22,7 @@ jobs:
     - name: Echo branch name
       shell: bash
       run: echo steps.extract_branch.outputs.branch
-      id: extract_branch
+      id: echo_branch
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
