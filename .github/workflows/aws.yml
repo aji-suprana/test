@@ -35,7 +35,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: test0
+      run: ls ./
+    - name: test1
       run: ls ../
+    - name: test2
+      run: ls ../../
 
     
