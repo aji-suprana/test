@@ -1,0 +1,15 @@
+var env = {
+  JWT_SECRET:"Upmesh2019",
+  FB_HOST:"https://graph.facebook.com",
+  FB_SSE_HOST:"https://streaming-graph.facebook.com",
+  CIPHER_ALGORITHM:"aes-256-cbc",
+  CIPHER_KEY:"Upmesh2019",
+  CIPHER_BLOCK_SIZE:"16",
+  CLOUD_NAME:"diwwwrwk2",
+  CLOUDINARY_API_KEY:"549372782416238",
+  CLOUDINARY_API_SECRET:"e1TnqIdqu-izICoFgpJxsdRdjmQ",
+  VERSION : "v0.1",
+  PAYMENT_GATEWAY_SECRET:"E8838C90AEF599BCCC8CBF2323B09DA0F796238912A3D0B3B26A5B98C6CB0EFF"
+}
+
+module.exports = env;

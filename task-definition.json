@@ -71,9 +71,89 @@
                     "awslogs-stream-prefix": "backend-dev"
                 }
             }
+        },
+        {
+            "name": "upmesh-backend-stage",
+            "hostname": "upmesh-backend-stage",
+            "image": "058434268238.dkr.ecr.ap-southeast-1.amazonaws.com/upmesh-backend:stage",
+            "resourceRequirements": null,
+            "essential": false,
+            "memory":300,
+            "cpu":150,
+            "portMappings": [
+                {
+                    "containerPort": "1336",
+                    "hostPort": "1336",
+                    "protocol": "tcp"
+                }
+                
+            ],
+            "links": [
+                "db"
+            ],
+            "environment": [
+                {
+                    "name": "WAIT_HOSTS",
+                    "value": "db:3306"
+                }
+            ],
+            "entryPoint": [
+                "sh",
+                "/usr/local/bin/stage-entrypoint.sh"
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "ECS-cluster",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "backend-stage"
+                }
+            }
+        },
+        {
+            "name": "nginx",
+            "image": "058434268238.dkr.ecr.ap-southeast-1.amazonaws.com/upmesh-backend:dev-nginx",
+            "resourceRequirements": null,
+            "essential": false,
+            "memory":200,
+            "cpu":150,
+            "portMappings": [
+                {
+                    "containerPort": "80",
+                    "hostPort": "80",
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": "443",
+                    "hostPort": "443",
+                    "protocol": "tcp"
+                }
+                
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "ECS-cluster",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "nginx"
+                }
+            },
+            "links": [
+                "upmesh-backend-dev",
+                "upmesh-backend-stage"
+            ]
+        }
+    ],
+    "volumes": [
+        {
+            "name": "efs",
+            "efsVolumeConfiguration": {
+                "fileSystemId": "fs-a05d65e1",
+                "transitEncryption": "ENABLED"
+            }
         }
     ],
     "taskRoleArn": "",
-    "family": "rest-template-sql",
+    "family": "upmesh-backend-dev-stage",
     "placementConstraints": []
 }
