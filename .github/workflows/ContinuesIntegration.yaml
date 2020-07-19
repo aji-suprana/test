@@ -34,14 +34,6 @@ jobs:
           ECR_REPOSITORY: my-ecr-repo
           IMAGE_TAG: rest-template-sql-app
         run: >
-          | 
-
-          # Build a docker container and
-
-          # push it to ECR so that it can
-
-          # be deployed to ECS.
-
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
           docker/nodeapp/Dockerfile .
 
@@ -56,12 +48,6 @@ jobs:
           ECR_REPOSITORY: my-ecr-repo
           IMAGE_TAG: rest-template-sql-app
         run: >
-          # Build a docker container and
-
-          # push it to ECR so that it can
-
-          # be deployed to ECS.
-
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
           docker/db/Dockerfile .
 

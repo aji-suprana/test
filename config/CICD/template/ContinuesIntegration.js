@@ -54,7 +54,7 @@ module.exports=
               "ECR_REPOSITORY": CICD_config.ECR_REPOSITORY,
               "IMAGE_TAG": CICD_config.IMAGE_TAG.nodeApp
             },
-            "run": "| \n# Build a docker container and\n# push it to ECR so that it can\n# be deployed to ECS.\ndocker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/nodeapp/Dockerfile .\ndocker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\necho \"::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\"\n"
+            "run": "docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/nodeapp/Dockerfile .\ndocker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\necho \"::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\"\n"
           },
           {
             "name": "MYSQL image",
@@ -64,7 +64,7 @@ module.exports=
               "ECR_REPOSITORY": CICD_config.ECR_REPOSITORY,
               "IMAGE_TAG": CICD_config.IMAGE_TAG.nodeApp
             },
-            "run": "# Build a docker container and\n# push it to ECR so that it can\n# be deployed to ECS.\ndocker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/db/Dockerfile .\ndocker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\necho \"::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\"\n"
+            "run": "docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/db/Dockerfile .\ndocker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\necho \"::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\"\n"
           }
         ]
       }

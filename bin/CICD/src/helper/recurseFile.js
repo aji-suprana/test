@@ -4,7 +4,6 @@
 const fs = require('fs');
 const path = require('path');
 const debug = require('../../../../app/services/debug');
-const regexp = require('regexp');
 
 var validateIgnore = (filePath,ignoreList)=>
 {
