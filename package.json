@@ -34,6 +34,7 @@
     "sequelize": "^5.21.11"
   },
   "devDependencies": {
+    "cli-interact": "^0.1.9",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4"
   }
