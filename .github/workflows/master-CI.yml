@@ -29,7 +29,7 @@ jobs:
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
-      
+
     - name : Install Jest
       run : npm install jest
       
@@ -49,12 +49,12 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
     
-    - name: MASTER image
+    - name: NODE APP IMAGE
       id: build-master-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: my-ecr-repo
-        IMAGE_TAG: prod
+        IMAGE_TAG: to-change
       run: |
         # Build a docker container and
         # push it to ECR so that it can
@@ -68,7 +68,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: my-ecr-repo
-        IMAGE_TAG: db
+        IMAGE_TAG: to-change-db
       run: |
         # Build a docker container and
         # push it to ECR so that it can
