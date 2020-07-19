@@ -23,7 +23,7 @@ jobs:
 
     outputs:
       Checkout : steps.Checkout.outputs
-      branch-name : steps.extract_branch.outputs
+      branch-name : steps.extract_branch.outputs.branch
       login-ecr : steps.login-ecr.outputs
       build-master-image  : steps.build-master-image.outputs
       build-mysql-image  : steps.build-mysql-image.outputs
@@ -31,6 +31,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
+      run :  echo "::set-output name=branch::$(echo ${GITHUB_REF#refs/heads/})"
 
     - name: Extract branch name
       shell: bash
@@ -47,6 +48,7 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
+      run:
     
     - name: MASTER image
       id: build-master-image
