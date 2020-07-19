@@ -22,12 +22,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name : Install Jest
-      run : npm install jest
-      
-    - name: Unit Testing
-      run: npm test
-
     - name: Checkout
       uses: actions/checkout@v1
 
@@ -35,6 +29,12 @@ jobs:
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
+      
+    - name : Install Jest
+      run : npm install jest
+      
+    - name: Unit Testing
+      run: npm test
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
