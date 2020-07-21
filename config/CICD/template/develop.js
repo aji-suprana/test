@@ -45,11 +45,11 @@ module.exports=
         },
         {
           "name": "create database",
-          "run": "npx sequelize-cli db:create --env test"
+          "run": "NODE_ENV=test npx sequelize-cli db:create --env test"
         },
         {
-          "name": "create database",
-          "run": "npx sequelize-cli db:create --env test"
+          "name": "migrate database",
+          "run": "NODE_ENV=test npx sequelize-cli db:migrate --env test"
         },
         {
           "name": "Unit Testing",
