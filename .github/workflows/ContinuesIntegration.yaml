@@ -32,7 +32,7 @@ jobs:
         run: npm install sequelize-cli
       - name: create database
         run: 'npx sequelize-cli db:create --env test'
-      - migrate database: create database
+      - name: create database
         run: 'npx sequelize-cli db:create --env test'
       - name: Unit Testing
         run: npm test

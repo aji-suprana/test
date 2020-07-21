@@ -53,7 +53,7 @@ module.exports=
           "run": "npx sequelize-cli db:create --env test"
         },
         {
-          "migrate database": "create database",
+          "name": "create database",
           "run": "npx sequelize-cli db:create --env test"
         },
         {
