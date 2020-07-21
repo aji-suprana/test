@@ -19,7 +19,6 @@ jobs:
     steps:
       - name: Install npm
         run: |
-          apt-get npm
           npm install jest
           npm install sequelize-cli
       - name: Verify MySQL connection from container 
