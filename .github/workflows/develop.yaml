@@ -3,6 +3,7 @@ name: Continues Integration
   push:
     branches:
       - develop
+      
 jobs:
   build-test:
     name: Build and Run Unit Test
