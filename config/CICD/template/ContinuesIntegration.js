@@ -14,7 +14,6 @@ module.exports=
   "jobs":   
   {
     "ECR-PUSH": {
-      "needs":"test",
       "name": "Build Image and Push to ECR",
       "runs-on": "ubuntu-latest",
       "services":{
