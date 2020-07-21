@@ -41,12 +41,9 @@ module.exports=
         },
         {
           "name": "Install npm",
-          "run": "npm install jest"
+          "run": "npm install jest\nnpm install sequelize-cli\n"
         },
-        {
-          "name": "Install sequelize",
-          "run": "npm install sequelize-cli"
-        },
+
         {
           "name": "setup test database",
           "run": "NODE_ENV=test npx sequelize-cli db:create --env test \nNODE_ENV=test npx sequelize-cli db:migrate --env test\n"
