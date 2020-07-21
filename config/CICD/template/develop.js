@@ -26,6 +26,10 @@ module.exports=
       },
       "steps": [
         {
+          "name": "Verify MySQL connection from container",
+          "run": "apt-get update\napt-get install -y mysql-client\nmysql --host mydb -uroot -ppassword -e \"SHOW DATABASES\"\n"
+        },
+        {
           "name": "Checkout",
           "uses": "actions/checkout@v1"
         },

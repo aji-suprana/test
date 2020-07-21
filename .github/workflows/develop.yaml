@@ -15,6 +15,11 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
     steps:
+      - name: Verify MySQL connection from container
+        run: |
+          apt-get update
+          apt-get install -y mysql-client
+          mysql --host mydb -uroot -ppassword -e "SHOW DATABASES"
       - name: Checkout
         uses: actions/checkout@v1
       - name: Extract branch name
