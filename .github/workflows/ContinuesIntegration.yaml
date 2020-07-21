@@ -14,6 +14,7 @@ jobs:
       mydb:
         image: mysql:5.7
         env:
+          MYSQL_ROOT_PASSWORD: password
           MYSQL_USER: vobis
           MYSQL_USER_PASSWORD: vobis12345
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
