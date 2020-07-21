@@ -27,11 +27,12 @@ jobs:
       - name: Extract branch name
         shell: bash
         run: 'echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"'
-        id: extract_branchgi
+        id: extract_branch
       - name: Install jest
-        run: npm install jest
-      - name: Install sequelize
-        run: npm install sequelize-cli
+        run: |
+          apt-get npm
+          npm install jest
+          npm install sequelize-cli
       - name: create database
         run: 'NODE_ENV=test npx sequelize-cli db:create --env test '
       - name: create database
