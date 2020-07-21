@@ -17,13 +17,16 @@
                     "env": {
                         "MYSQL_ROOT_PASSWORD": "password"
                     },
-                    "options": "--health-cmd=\"mysqladmin ping\" --health-interval=10s --health-timeout=5s --health-retries=5"
+                    "ports": [
+                        "32574:3306"
+                    ],
+                    "options": "--health-cmd=\"mysqladmin ping\" --health-interval=10s --health-timeout=5s --health-retries=3"
                 }
             },
             "steps": [
                 {
-                    "name": "Verify MySQL connection from container",
-                    "run": "apt-get update\napt-get install -y mysql-client\nmysql --host mydb -uroot -ppassword -e \"SHOW DATABASES\"\n"
+                    "name": "Verify MySQL connection from host",
+                    "run": "sudo apt-get install -y mysql-client\nmysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e \"SHOW DATABASES\"\n"
                 },
                 {
                     "name": "Checkout",
