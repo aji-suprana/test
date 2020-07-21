@@ -58,14 +58,5 @@ module.exports=
 
       ]
     },
-    
-    "deploy":{
-      "name": "Upload Image to ECR",
-      "runs-on": "ubuntu-latest",
-      "needs" : "build-test",
-      "steps": [
-
-      ]
-    },
   }
 }
