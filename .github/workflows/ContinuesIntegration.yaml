@@ -13,7 +13,7 @@ jobs:
       mysql:
         image: 'mysql:5.7'
         ports:
-          - 3306
+          - 32574:3306
         env:
           MYSQL_USER: vobis
           MYSQL_PASSWORD: vobis12345
@@ -21,8 +21,10 @@ jobs:
           MYSQL_ROOT_PASSWORD: vobis12345
     steps:
       - name: Verify MySQL connection from host
-        run: >
-          mysql --host 127.0.0.1 --port 3306 -uroot -ppassword -e "SHOW DATABASES"
+        run: |
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
+        
       - name: Checkout
         uses: actions/checkout@v1
       - name: Extract branch name
