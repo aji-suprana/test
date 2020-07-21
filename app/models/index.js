@@ -1,17 +1,11 @@
 'use strict';
-const debug = require('../services/debug')
-debug.logHeader("loading models")
 
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(path.join(__dirname, '/../../config/database.js'))[env];
-debug.logData('chosen env',env);
-debug.logData('chosen config',config);
-
-
+const env = process.env.NODE_ENV || 'test';
+const config = require(__dirname + '/../../config/database.js')[env];
 const db = {};
 
 const files = [];

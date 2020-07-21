@@ -10,9 +10,9 @@ module.exports = async (req, res, next) => {
       );
     }
 
-    const jwtToken = req.headers.authorization.split(/^Bearer\s+/);
+    const jwtToken = req.headers.authorization.split(/^Bearer\s+/)[1];
 
-    const decodedJWT = jwt.decode(jwtToken);
+    const decodedJWT = jwt.verify(jwtToken, process.env.JWT_SECRET);
 
     req.user = decodedJWT;
 

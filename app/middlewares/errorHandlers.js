@@ -19,6 +19,10 @@ const errorStack = (error, req, res, next) => {
       statusCode = 400;
       break;
 
+    case 'E_CAPTCHA':
+      statusCode = 400;
+      break;
+
     case 'E_VALIDATION':
       statusCode = 422;
       break;
