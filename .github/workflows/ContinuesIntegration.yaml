@@ -39,11 +39,11 @@ jobs:
       - name: create database
         run: |
           npm install dotenv
-          'NODE_ENV=test npx sequelize-cli db:create --env test '
+          NODE_ENV=test npx sequelize-cli db:create --env test 
       - name: create database
         run: |
           npm install dotenv
-          'NODE_ENV=test npx sequelize-cli db:create --env test'
+          NODE_ENV=test npx sequelize-cli db:create --env test
       - name: Unit Testing
         run: npm test
       - name: Configure AWS credentials
