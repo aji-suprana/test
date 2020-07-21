@@ -10,7 +10,6 @@ module.exports=
     }
   },
   "jobs": 
-  [
     {
       "ECR-PUSH": {
         "name": "Build Image and Push to ECR",
@@ -71,5 +70,4 @@ module.exports=
         ]
       }
     }
-  ]
 }
