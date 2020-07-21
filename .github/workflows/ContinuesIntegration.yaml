@@ -27,7 +27,7 @@ jobs:
         run: 'echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"'
         id: extract_branch
       - name: Install npm
-        run: npm install jest
+        run: npm install
       - name: Install sequelize
         run: npm install sequelize-cli
       - name: create database
