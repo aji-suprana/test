@@ -1,4 +1,5 @@
 const exampleRepo = require('../app/repository/example')
+const env = require('../env')
 
 test('adds 1 + 1',()=>{
   var request = 

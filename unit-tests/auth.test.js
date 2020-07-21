@@ -1,4 +1,5 @@
 const supertest = require('supertest');
+const env = require('../env')
 const app = require('../app');
 const request = supertest(app);
 const db = require('../app/models');
