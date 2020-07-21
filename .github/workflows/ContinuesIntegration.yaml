@@ -42,7 +42,7 @@ jobs:
           npm install dotenv
           NODE_ENV=test npx sequelize-cli db:create --env test 
           NODE_ENV=test npx sequelize-cli db:migrate --env test 
-          cp ./env/.env ./
+          ls 
       - name: Unit Testing
         run: npm test
       - name: Configure AWS credentials
