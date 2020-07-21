@@ -14,16 +14,15 @@ module.exports=
     "build-test": {
       "name": "Build and Run Unit Test",
       "runs-on": "ubuntu-latest",
-      "services":{
-        "mydb":{
-          "image": 'mysql:5.7',
-          "ports" :[3306],
-          "env":
-          {
-            "MYSQL_ROOT_PASSWORD" : "password",
-          }
+      "services": {
+        "mydb": {
+            "image": "mysql:5.7",
+            "env": {
+                "MYSQL_ROOT_PASSWORD": "password"
+            },
+            "options": "--health-cmd=\"mysqladmin ping\" --health-interval=10s --health-timeout=5s --health-retries=5"
         }
-      },
+    },
       "steps": [
         {
           "name": "Verify MySQL connection from container",
