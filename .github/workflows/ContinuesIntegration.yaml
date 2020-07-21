@@ -25,7 +25,6 @@ jobs:
         run: |
           npm install jest
           npm install sequelize-cli
-          npm install dotenv
       - name: Verify MySQL connection from container 
         run: |
           apt-get update
@@ -38,9 +37,13 @@ jobs:
         run: 'echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"'
         id: extract_branch
       - name: create database
-        run: 'NODE_ENV=test npx sequelize-cli db:create --env test '
+        run: |
+          npm install dotenv
+          'NODE_ENV=test npx sequelize-cli db:create --env test '
       - name: create database
-        run: 'NODE_ENV=test npx sequelize-cli db:create --env test'
+        run: |
+          npm install dotenv
+          'NODE_ENV=test npx sequelize-cli db:create --env test'
       - name: Unit Testing
         run: npm test
       - name: Configure AWS credentials
