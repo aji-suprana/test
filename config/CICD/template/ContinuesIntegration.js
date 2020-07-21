@@ -1,15 +1,17 @@
 const CICD_config = require("../CICD_config")
 module.exports=
 {
-    "name": "Continues Integration",
-    "on": {
-      "push": {
-        "branches": [
-          "master"
-        ]
-      }
-    },
-    "jobs": {
+  "name": "Continues Integration",
+  "on": {
+    "push": {
+      "branches": [
+        "master"
+      ]
+    }
+  },
+  "jobs": 
+  [
+    {
       "ECR-PUSH": {
         "name": "Build Image and Push to ECR",
         "runs-on": "ubuntu-latest",
@@ -47,7 +49,7 @@ module.exports=
             "uses": "aws-actions/amazon-ecr-login@v1"
           },
           {
-            "name": "NODE APP IMAGE",
+            "name": CICD_config.IMAGE_TAG.nodeApp + "IMAGE",
             "id": "build-master-image",
             "env": {
               "ECR_REGISTRY": "${{ steps.login-ecr.outputs.registry }}",
@@ -69,4 +71,5 @@ module.exports=
         ]
       }
     }
-  }
+  ]
+}
