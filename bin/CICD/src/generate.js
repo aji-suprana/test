@@ -24,7 +24,7 @@ module.exports = (args) => {
         // console.log(util.inspect(doc, { showHidden: false, depth: null }))
 
   
-        var doc = yaml.safeLoad(fs.readFileSync(__dirname+'/../../../.github/workflows/ContinuesIntegration.yaml','utf-8'));
+        var doc = yaml.safeLoad(fs.readFileSync(__dirname+'/../../../.github/workflows/develop.yaml','utf-8'));
         fs.writeFile("generated.json", JSON.stringify(doc,null,4), function (err) {
             if (err) {
                 console.log(err);

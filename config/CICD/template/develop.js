@@ -15,7 +15,7 @@ module.exports=
       "name": "Build and Run Unit Test",
       "runs-on": "ubuntu-latest",
       "services":{
-        "mysql":{
+        "mydb":{
           "image": 'mysql:5.7',
           "ports" :[3306],
           "env":
@@ -44,12 +44,8 @@ module.exports=
           "run": "npm install sequelize-cli"
         },
         {
-          "name": "create database",
-          "run": "NODE_ENV=test npx sequelize-cli db:create --env test"
-        },
-        {
-          "name": "migrate database",
-          "run": "NODE_ENV=test npx sequelize-cli db:migrate --env test"
+          "name": "setup test database",
+          "run": "NODE_ENV=test npx sequelize-cli db:create --env test \nNODE_ENV=test npx sequelize-cli db:migrate --env test\n"
         },
         {
           "name": "Unit Testing",
