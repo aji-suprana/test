@@ -3,7 +3,6 @@ name: Continues Integration
   push:
     branches:
       - develop
-      
 jobs:
   build-test:
     name: Build and Run Unit Test
@@ -32,8 +31,3 @@ jobs:
         run: 'npx sequelize-cli db:create --env test'
       - name: Unit Testing
         run: npm test
-  deploy:
-    name: Upload Image to ECR
-    runs-on: ubuntu-latest
-    needs: build-test
-    steps: []
