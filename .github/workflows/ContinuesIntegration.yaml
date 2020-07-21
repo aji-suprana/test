@@ -25,6 +25,7 @@ jobs:
         run: |
           npm install jest
           npm install sequelize-cli
+          npm install dotenv
       - name: Verify MySQL connection from container 
         run: |
           apt-get update
@@ -38,7 +39,6 @@ jobs:
         id: extract_branch
       - name: create database
         run: |
-          npm install dotenv
           NODE_ENV=test npx sequelize-cli db:create --env test 
       - name: create database
         run: |
