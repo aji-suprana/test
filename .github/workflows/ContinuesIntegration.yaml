@@ -31,6 +31,7 @@ jobs:
       - name: Install sequelize
         run: npm install sequelize-cli
       - name: create database
+        needs: Install npm
         run: 'cross-env NODE_ENV=test npx sequelize-cli db:create --env test '
       - name: create database
         run: 'cross-env NODE_ENV=test npx sequelize-cli db:create --env test'
