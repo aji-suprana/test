@@ -31,7 +31,7 @@ jobs:
       - name: Install sequelize
         run: npm install sequelize-cli
       - name: create database
-        run: 'npx sequelize-cli db:create --env test'
+        run: 'npx sequelize-cli db:create --env test '
       - name: create database
         run: 'npx sequelize-cli db:create --env test'
       - name: Unit Testing
