@@ -9,22 +9,19 @@ jobs:
   ECR-PUSH:
     name: Build Image and Push to ECR
     runs-on: ubuntu-latest
+    container: ubuntu
     services:
-      mysql:
-        image: 'mysql:5.7'
-        ports:
-          - 32574:3306
+      mydb:
+        image: mysql:5.7
         env:
-          MYSQL_USER: vobis
-          MYSQL_PASSWORD: vobis12345
-          MYSQL_DATABASE: vobis_authentication_test
-          MYSQL_ROOT_PASSWORD: vobis12345
-          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          MYSQL_ROOT_PASSWORD: password
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
     steps:
-      - name: Verify MySQL connection from host
-        run: |
-          sudo apt-get install -y mysql-client
-          mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
+    - name: Verify MySQL connection from container 
+      run: |
+        apt-get update
+        apt-get install -y mysql-client
+        mysql --host mydb -uroot -ppassword -e "SHOW DATABASES"
         
       - name: Checkout
         uses: actions/checkout@v1
