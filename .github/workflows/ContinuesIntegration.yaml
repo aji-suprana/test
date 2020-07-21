@@ -26,16 +26,14 @@ jobs:
         shell: bash
         run: 'echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"'
         id: extract_branch
-      - name: Install cross-env
-        run: npm install cross-env
       - name: Install jest
         run: npm install jest
       - name: Install sequelize
         run: npm install sequelize-cli
       - name: create database
-        run: 'cross-env NODE_ENV=test npx sequelize-cli db:create --env test '
+        run: 'NODE_ENV=test npx sequelize-cli db:create --env test '
       - name: create database
-        run: 'cross-env NODE_ENV=test npx sequelize-cli db:create --env test'
+        run: 'NODE_ENV=test npx sequelize-cli db:create --env test'
       - name: Unit Testing
         run: npm test
       - name: Configure AWS credentials
