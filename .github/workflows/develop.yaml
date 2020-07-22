@@ -16,8 +16,8 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=4s --health-timeout=5s --health-retries=2
     steps:
       - uses: actions/setup-node@v2-beta
-          with:
-            node-version: '10'
+        with:
+          node-version: '10'
       - name: Checkout
         uses: actions/checkout@v1
       - name: Extract branch name
