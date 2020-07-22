@@ -5,7 +5,7 @@ name: Develop-CI
       - develop
 jobs:
   build-test:
-    name: Build and Run Unit Test
+    name: build-test
     runs-on: ubuntu-latest
     container: ubuntu
     services:

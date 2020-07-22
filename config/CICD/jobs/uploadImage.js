@@ -5,6 +5,7 @@ module.exports={
     "content":{
         "name": "Upload Image to ECR",
         "runs-on": "ubuntu-latest",
+        "needs" : "built-test",
         "steps": [
         {
             "name": "Checkout",

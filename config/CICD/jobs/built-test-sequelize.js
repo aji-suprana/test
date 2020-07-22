@@ -1,7 +1,7 @@
 module.exports = {
     name : "build-test",
     content: {
-        "name": "Build and Run Unit Test",
+        "name": "build-test",
         "runs-on": "ubuntu-latest",
         "container": "ubuntu",
         "services": {

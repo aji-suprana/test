@@ -5,7 +5,7 @@ name: Develop-CD
       - develop
 jobs:
   build-test:
-    name: Build and Run Unit Test
+    name: build-test
     runs-on: ubuntu-latest
     container: ubuntu
     services:
@@ -38,6 +38,7 @@ jobs:
   upload-image:
     name: Upload Image to ECR
     runs-on: ubuntu-latest
+    needs: built-test
     steps:
       - name: Checkout
         uses: actions/checkout@v1
