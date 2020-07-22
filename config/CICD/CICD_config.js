@@ -1,7 +1,7 @@
 
 
 var appName = 'sandbox';
-var dbName = 'sandbox';
+var dbName = appName + '-db';
 
 if(appName == 'sandbox')
 {
