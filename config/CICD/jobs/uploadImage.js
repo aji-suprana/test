@@ -1,5 +1,6 @@
 module.exports={
-    "upload-image":{
+    "name": "upload-image",
+    "content":{
         "name": "Upload Image to ECR",
         "runs-on": "ubuntu-latest",
         "needs" : "build-test",
