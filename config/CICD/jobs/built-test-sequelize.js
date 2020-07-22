@@ -1,8 +1,8 @@
 module.exports = {
-    name : "build-test",
+    name : "buildTest",
     content: {
-        "name": "build-test",
-        "runs-on": "ubuntu-latest",
+        "name": "buildTest",
+        "runs-on": "Build and run test",
         "container": "ubuntu",
         "services": {
             "mydb": {

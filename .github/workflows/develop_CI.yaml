@@ -4,9 +4,9 @@ name: Develop-CI
     branches:
       - develop
 jobs:
-  build-test:
-    name: build-test
-    runs-on: ubuntu-latest
+  buildTest:
+    name: buildTest
+    runs-on: Build and run test
     container: ubuntu
     services:
       mydb:
