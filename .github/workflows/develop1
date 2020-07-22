@@ -1,4 +1,4 @@
-name: Develop
+name: Continues Integration
 'on':
   push:
     branches:
@@ -10,12 +10,10 @@ jobs:
     container: ubuntu
     services:
       mydb:
-        image: 'mysql:5.7'
+        image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: password
-        options: >-
-          --health-cmd="mysqladmin ping" --health-interval=4s
-          --health-timeout=5s --health-retries=2
+        options: --health-cmd="mysqladmin ping" --health-interval=4s --health-timeout=5s --health-retries=2
     steps:
       - uses: actions/setup-node@v2-beta
         with:

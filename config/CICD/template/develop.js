@@ -1,7 +1,7 @@
 const CICD_config = require("../CICD_config")
 module.exports=
 {
-  "name": "Continues Integration",
+  "name": "Develop",
   "on": {
     "push": {
       "branches": [
@@ -14,20 +14,23 @@ module.exports=
     "build-test": {
       "name": "Build and Run Unit Test",
       "runs-on": "ubuntu-latest",
+      "container": "ubuntu",
       "services": {
-        "mydb": {
-            "image": "mysql:5.7",
-            "env": {
-                "MYSQL_ROOT_PASSWORD": "password"
-            },
-            "options": "--health-cmd=\"mysqladmin ping\" --health-interval=10s --health-timeout=5s --health-retries=5"
-        }
-    },
+          "mydb": {
+              "image": "mysql:5.7",
+              "env": {
+                  "MYSQL_ROOT_PASSWORD": "password"
+              },
+              "options": "--health-cmd=\"mysqladmin ping\" --health-interval=4s --health-timeout=5s --health-retries=2"
+          }
+      },
       "steps": [
         {
-          "name": "Verify MySQL connection from container",
-          "run": "apt-get update\napt-get install -y mysql-client\nmysql --host mydb -uroot -ppassword -e \"SHOW DATABASES\"\n"
-        },
+          "uses": "actions/setup-node@v2-beta",
+          "with": {
+              "node-version": "10"
+          }
+      },
         {
           "name": "Checkout",
           "uses": "actions/checkout@v1"
@@ -39,19 +42,13 @@ module.exports=
           "id": "extract_branch"
         },
         {
-          "name": "Install npm",
-          "run": "npm install jest\nnpm install sequelize-cli\n"
-        },
-
-        {
           "name": "setup test database",
-          "run": "NODE_ENV=test npx sequelize-cli db:create --env test \nNODE_ENV=test npx sequelize-cli db:migrate --env test\n"
+          "run": "npm install sequelize-cli\nNODE_ENV=test npx sequelize-cli db:create --env test \nNODE_ENV=test npx sequelize-cli db:migrate --env test\n"
         },
         {
-          "name": "Unit Testing",
-          "run": "npm test"
-        },
-
+            "name": "Unit Testing",
+            "run": "npm install jest\nnpm test\n"
+        }
       ]
     },
   }
