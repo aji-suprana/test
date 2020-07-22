@@ -4,7 +4,7 @@ name: Develop-CD
     branches:
       - develop
 jobs:
-  build-test:
+  buildTest:
     name: build-test
     runs-on: ubuntu-latest
     steps:
@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
   upload-image:
-    needs: built-test
+    needs: buildTest
     name: Upload Image to ECR
     runs-on: ubuntu-latest
     steps:
