@@ -39,6 +39,7 @@ jobs:
     needs: built-test
     name: Upload Image to ECR
     runs-on: ubuntu-latest
+    container: ubuntu
     steps:
       - name: Checkout
         uses: actions/checkout@v1
