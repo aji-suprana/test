@@ -39,10 +39,9 @@ module.exports = (args) => {
                 var workflow = path.resolve(__dirname,'../../../.github/workflows/');
                 fileName = fileName[fileName.length - 1];
                 moduleName = fileName.split('.')[0]
-                console.log(moduleName)
 
-                var doc = yaml.safeDump(require(path.join(__dirname,'/../../../config/CICD/template/'+fileName)));
-                console.log(doc);
+                var filePath = path.join(__dirname,'/../../../config/CICD/template/'+fileName)
+                var doc = yaml.safeDump(require(filePath));
                 fs.writeFile(workflow+'/'+moduleName + ".yaml", doc, function (err) {
                     if (err) {
                         console.log(err);

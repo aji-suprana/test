@@ -1,0 +1,84 @@
+name: Develop-CD
+'on':
+  push:
+    branches:
+      - develop
+jobs:
+  build-test:
+    name: Build and Run Unit Test
+    runs-on: ubuntu-latest
+    container: ubuntu
+    services:
+      mydb:
+        image: 'mysql:5.7'
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        options: >-
+          --health-cmd="mysqladmin ping" --health-interval=4s
+          --health-timeout=5s --health-retries=2
+    steps:
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '10'
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Extract branch name
+        shell: bash
+        run: 'echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"'
+        id: extract_branch
+      - name: setup test database
+        run: |
+          npm install sequelize-cli
+          NODE_ENV=test npx sequelize-cli db:create --env test 
+          NODE_ENV=test npx sequelize-cli db:migrate --env test
+      - name: Unit Testing
+        run: |
+          npm install jest
+          npm test
+  upload-image:
+    name: Upload Image to ECR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Extract branch name
+        shell: bash
+        run: 'echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"'
+        id: extract_branch
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: '${{ secrets.AWS_ACCESS_KEY_ID }}'
+          aws-secret-access-key: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
+          aws-region: ap-southeast-1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: sandboxIMAGE
+        id: build-master-image
+        env:
+          ECR_REGISTRY: '${{ steps.login-ecr.outputs.registry }}'
+          ECR_REPOSITORY: my-ecr-repo
+          IMAGE_TAG: sandbox
+        run: >
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
+          docker/nodeapp/Dockerfile .
+
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+          echo "::set-output
+          name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+      - name: MYSQL image
+        id: build-mysql-image
+        env:
+          ECR_REGISTRY: '${{ steps.login-ecr.outputs.registry }}'
+          ECR_REPOSITORY: my-ecr-repo
+          IMAGE_TAG: sandbox
+        run: >
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
+          docker/db/Dockerfile .
+
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+          echo "::set-output
+          name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"

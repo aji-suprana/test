@@ -18,7 +18,6 @@ fs
 .forEach((res) => {
   var scriptName = res.split('.')[0];
   scripts[scriptName] = require('./src/'+res);
-  console.log(res)
 })
 
 var command = argv._[0];
