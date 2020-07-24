@@ -41,4 +41,4 @@ jobs:
       - name: Unit Testing
         run: |
           npm install jest
-          npm test
+          NODE_ENV=test npm test
