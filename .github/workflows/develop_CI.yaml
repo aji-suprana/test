@@ -4,6 +4,7 @@ name: Develop-CI
     branches:
       - develop
       - master
+      
 jobs:
   buildTest:
     name: Build and Run Unit Test
