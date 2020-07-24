@@ -3,7 +3,9 @@ name: Develop-CI
   push:
     branches:
       - develop
+      - release/*
       - master
+      - feature/cicd
 jobs:
   buildTest:
     name: Build and Run Unit Test

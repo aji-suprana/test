@@ -10,6 +10,9 @@ module.exports=
     "push": {
       "branches": [
         "develop",
+        "release/*",
+        "master",
+        "feature/cicd"
       ]
     }
   },
