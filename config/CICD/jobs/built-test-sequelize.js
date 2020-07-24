@@ -1,27 +1,19 @@
-
-
 module.exports = {
     name : "buildTest",
     content: {
         "name": "Build and Run Unit Test",
         "runs-on": "ubuntu-latest",
+        "container": "ubuntu",
         "services": {
-            "mysql": {
+            "mydb": {
                 "image": "mysql:5.7",
                 "env": {
                     "MYSQL_ROOT_PASSWORD": "password"
                 },
-                "ports": [
-                    "3306:3306"
-                ],
-                "options": "--health-cmd=\"mysqladmin ping\" --health-interval=10s --health-timeout=5s --health-retries=3"
+                "options": "--health-cmd=\"mysqladmin ping\" --health-interval=4s --health-timeout=5s --health-retries=2"
             }
         },
         "steps": [
-            {
-                "name": "Verify MySQL connection from host",
-                "run": "sudo apt-get install -y mysql-client\nmysql --host 127.0.0.1 --port 3306 -uroot -ppassword -e \"SHOW DATABASES\"\n"
-            },
             {
                 "uses": "actions/setup-node@v2-beta",
                 "with": {
