@@ -2,7 +2,7 @@ name: Develop-CI
 'on':
   push:
     branches:
-      - master
+      - develop
 jobs:
   buildTest:
     name: Build and Run Unit Test
@@ -41,4 +41,4 @@ jobs:
       - name: Unit Testing
         run: |
           npm install jest
-          NODE_ENV=test npm test
+          npm test
