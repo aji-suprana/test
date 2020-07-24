@@ -11,7 +11,8 @@ module.exports=
       "branches": [
         "develop",
         "master",
-        "release/*"
+        "release/*",
+        "feature/cicd"
       ]
     }
   },
