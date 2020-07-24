@@ -17,10 +17,11 @@ jobs:
           --health-cmd="mysqladmin ping" --health-interval=4s
           --health-timeout=5s --health-retries=2
     steps:
-      - name: Verify MySQL connection from host
-        run: |
-          sudo apt-get install -y mysql-client
-          mysql --host mydb --port 3306 -uroot -ppassword -e "SHOW DATABASES"
+    - name: Verify MySQL connection from container 
+      run: |
+        apt-get update
+        apt-get install -y mysql-client
+        mysql --host mydb -uroot -ppassword -e "SHOW DATABASES"
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '10'
