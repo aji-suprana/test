@@ -3,6 +3,8 @@ name: Unit-Test
   push:
     branches:
       - develop
+      - master
+      - release/*
 jobs:
   buildTest:
     name: Build and Run Unit Test

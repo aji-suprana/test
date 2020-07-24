@@ -10,6 +10,8 @@ module.exports=
     "push": {
       "branches": [
         "develop",
+        "master",
+        "release/*"
       ]
     }
   },
