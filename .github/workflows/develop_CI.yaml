@@ -4,22 +4,21 @@ name: Develop-CI
     branches:
       - master
 jobs:
-  buildTest:
-    name: Build and Run Unit Test
+  test-host:
     runs-on: ubuntu-latest
     services:
-      mydb:
-        image: 'mysql:5.7'
+      mysql:
+        image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: password
-        options: >-
-          --health-cmd="mysqladmin ping" --health-interval=4s
-          --health-timeout=5s --health-retries=2
+        ports:
+        - 32574:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - name: Verify MySQL connection from container 
-        run: |
-          sudo apt-get install -y mysql-client
-          mysql --host localhost -uroot -ppassword -e "SHOW DATABASES"
+    - name: Verify MySQL connection from host
+      run: |
+        sudo apt-get install -y mysql-client
+        mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '10'
