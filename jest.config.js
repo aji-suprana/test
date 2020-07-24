@@ -1,4 +1,5 @@
 module.exports = {
   runner: 'jest-serial-runner',
-  setupFiles: ['dotenv/config']
-}
+  setupFiles: ['dotenv/config'],
+  verbose: true,
+};

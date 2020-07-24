@@ -4,7 +4,7 @@ const check = (req, res, next) => {
   try {
     const isAdmin = req.user.isAdmin;
     const brands = req.user.brand_id;
-    const brand_id = req.headers['brand-id'];
+    const brand_id = req.headers['x-brand'];
 
     if (isAdmin) {
       return next();

@@ -1,26 +1,24 @@
 const flaverr = require('flaverr');
 
-/*
-  cara pakai check local IDs
-    1. masukkan id di array pertama, jadikan object dengan key yg sama
-    2. masukkan model di array kedua, harus sama urutannya
-    misal mau ngecek id person dan corporate
-    [[{ id_person }, { id_corporate }], [Model Person, Model Corporate]
-*/
+/**
+ * Check All ID in This Service
+ * @param {Array} ids Array of Object of IDs. Example: [ { barang_id: 'value' } ]
+ * @param {Array} models Array of Models. Example [ Barang_Model ]
+ */
 
-const checkLocalIDs = async (ids, models) => {
+const checkLocalIDs = async (ids = [], models = []) => {
+  if (!Array.isArray(ids)) {
+    return flaverr('E_INVALID_IDS', Error('ids must be an array of ids'));
+  }
+
+  if (!Array.isArray(models)) {
+    return flaverr(
+      'E_INVALID_MODELS',
+      Error('models must be an array of models')
+    );
+  }
+
   try {
-    if (!Array.isArray(ids)) {
-      throw flaverr('E_INVALID_IDS', Error('ids must be an array of ids'));
-    }
-
-    if (!Array.isArray(models)) {
-      throw flaverr(
-        'E_INVALID_MODELS',
-        Error('models must be an array of models')
-      );
-    }
-
     const output = ids.map(async (id, index) => {
       const [key] = Object.keys(id);
       const [value] = Object.values(id);
@@ -33,7 +31,7 @@ const checkLocalIDs = async (ids, models) => {
 
       if (!result) {
         throw flaverr(
-          `E_CHECK`,
+          `E_CHECK_${key.toUpperCase()}`,
           Error(
             `${key} with id ${value}, with model: ${models[index].name}, is not found`
           )

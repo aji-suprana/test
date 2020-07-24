@@ -55,12 +55,12 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-      - name: vbs-finance_bookIMAGE
+      - name: vbs-barangIMAGE
         id: build-master-image
         env:
           ECR_REGISTRY: '${{ steps.login-ecr.outputs.registry }}'
           ECR_REPOSITORY: my-ecr-repo
-          IMAGE_TAG: vbs-finance_book
+          IMAGE_TAG: vbs-barang
         run: >
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
           docker/nodeapp/Dockerfile .
@@ -74,7 +74,7 @@ jobs:
         env:
           ECR_REGISTRY: '${{ steps.login-ecr.outputs.registry }}'
           ECR_REPOSITORY: my-ecr-repo
-          IMAGE_TAG: vbs-finance_book
+          IMAGE_TAG: vbs-barang
         run: >
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
           docker/db/Dockerfile .
