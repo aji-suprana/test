@@ -34,7 +34,7 @@ jobs:
       - name: Unit Testing
         run: |
           npm install jest
-          npm test
+          NODE_ENV=test npm test
   uploadImage:
     name: Upload Image to ECR
     runs-on: ubuntu-latest
