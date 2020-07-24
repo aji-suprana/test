@@ -5,7 +5,7 @@ const constructJobs = {}
 constructJobs[buildSequelize.name] = buildSequelize.content;
 module.exports=
 {
-  "name": "Develop-CI",
+  "name": "Unit-Test",
   "on": {
     "push": {
       "branches": [
