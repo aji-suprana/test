@@ -7,23 +7,16 @@ jobs:
   buildTest:
     name: Build and Run Unit Test
     runs-on: ubuntu-latest
+    container: ubuntu
     services:
-      mysql:
+      mydb:
         image: 'mysql:5.7'
         env:
           MYSQL_ROOT_PASSWORD: password
-        ports:
-          - '3306:3306'
         options: >-
-          --health-cmd="mysqladmin ping" --health-interval=10s
-          --health-timeout=5s --health-retries=3
+          --health-cmd="mysqladmin ping" --health-interval=4s
+          --health-timeout=5s --health-retries=2
     steps:
-      - name: Verify MySQL connection from host
-        run: >
-          sudo apt-get install -y mysql-client
-
-          mysql --host 127.0.0.1 --port 3306 -uroot -ppassword -e "SHOW
-          DATABASES"
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '10'
@@ -62,12 +55,12 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-      - name: vbs-finance_bookIMAGE
+      - name: sandboxIMAGE
         id: build-master-image
         env:
           ECR_REGISTRY: '${{ steps.login-ecr.outputs.registry }}'
           ECR_REPOSITORY: my-ecr-repo
-          IMAGE_TAG: vbs-finance_book
+          IMAGE_TAG: sandbox
         run: >
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
           docker/nodeapp/Dockerfile .
@@ -81,7 +74,7 @@ jobs:
         env:
           ECR_REGISTRY: '${{ steps.login-ecr.outputs.registry }}'
           ECR_REPOSITORY: my-ecr-repo
-          IMAGE_TAG: vbs-finance_book
+          IMAGE_TAG: sandbox
         run: >
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
           docker/db/Dockerfile .
