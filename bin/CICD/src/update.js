@@ -28,7 +28,7 @@ module.exports = (args) => {
         //         console.log(err);
         //     }
         // });
-        var configPath = path.resolve(__dirname,'../../../config/CICD/template');
+        var configPath = path.resolve(__dirname,'../template');
         if(!fs.existsSync(configPath))
         {
             debug.logError(configPath + ' does not exist');
@@ -40,7 +40,7 @@ module.exports = (args) => {
                 fileName = fileName[fileName.length - 1];
                 moduleName = fileName.split('.')[0]
 
-                var filePath = path.join(__dirname,'/../../../config/CICD/template/'+fileName)
+                var filePath = path.join(__dirname,'/../template/'+fileName)
                 var doc = yaml.safeDump(require(filePath));
                 fs.writeFile(workflow+'/'+moduleName + ".yaml", doc, function (err) {
                     if (err) {
