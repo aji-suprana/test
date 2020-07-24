@@ -1,5 +1,5 @@
 module.exports = {
-    name : "build-test",
+    name : "buildTest",
     content: {
         "name": "Build and Run Unit Test",
         "runs-on": "ubuntu-latest",

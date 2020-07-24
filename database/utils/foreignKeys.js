@@ -1,13 +1,11 @@
 const addForeignKeys = (queryInterface, Sequelize, tables = [], t) => {
   return tables.map((table) => {
     const [result] = table.column.map((column, index) => {
-      const type = table.type ? Sequelize[table.type[index]] : Sequelize.UUID;
-
       return queryInterface.changeColumn(
         table.table,
         column,
         {
-          type,
+          type: Sequelize[table.type] || Sequelize.UUID,
           references: {
             model: table.refTable[index],
           },
@@ -19,7 +17,7 @@ const addForeignKeys = (queryInterface, Sequelize, tables = [], t) => {
   });
 };
 
-const removeForeignKeys = (queryInterface, tables = [], t) => {
+const removeForeignKeys = (queryInterface, Sequelize, tables = [], t) => {
   return tables.map(async (table) => {
     const foreignKeys = await queryInterface.getForeignKeysForTables([
       table.table,

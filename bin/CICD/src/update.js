@@ -35,7 +35,7 @@ module.exports = (args) => {
         }
         recurseFile.runThroughDirectory(configPath,[],
             (file)=>{
-                var fileName = file.split('/');
+                var fileName = file.split('\\');
                 var workflow = path.resolve(__dirname,'../../../.github/workflows/');
                 fileName = fileName[fileName.length - 1];
                 moduleName = fileName.split('.')[0]

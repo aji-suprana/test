@@ -1,68 +1,71 @@
-const { sequelize, Sequelize } = require('../models');
+const { Sequelize, sequelize } = require('../models');
+
+var library = {};
 
 /**
- * Create Object Transaction
+ * Create for init transaction
+ * @return {Object} Object containing status and transaction or error object
  */
-
-const Create = async () => {
+library.Create = async () => {
   try {
-    const transaction = await sequelize.transaction({
-      isolationLevel:
-        Sequelize.Transaction.READ_UNCOMMITTED || 'READ UNCOMMITTED',
+    const t = await sequelize.transaction({
+      isolationLevel: Sequelize.Transaction.READ_UNCOMMITTED || "READ UNCOMMITTED"
     });
 
-    return {
+    return Promise.resolve({
       status: true,
-      data: transaction,
-    };
-  } catch (err) {
-    return {
+      data: t
+    });
+  }
+  catch (err) {
+    return Promise.reject({
       status: false,
-      err: err,
-    };
+      err: err
+    });
   }
 };
 
 /**
- * Rollback Transaction
- * @param {Object} transaction Object transaction
+ * Commit transaction
+ * @param  {Object} transactions Object of transaction
+ * @return {Object}              Return object containing status adn or error object
  */
-
-const Rollback = async (transaction) => {
+library.Commit = async (transactions) => {
   try {
-    await transaction.rollback();
+    await transactions.commit();
 
-    return {
-      status: true,
-    };
-  } catch (err) {
-    return {
+    return Promise.resolve({
+      status: true
+    });
+  }
+  catch (err) {
+    await library.Rollback(transactions);
+    return Promise.reject({
       status: false,
-      err: err,
-    };
+      err: err
+    });
   }
 };
 
 /**
- * Commit Transaction
- * @param {Object} transaction Object transaction
+ * Rollback transaction
+ * @param  {Object} transactions Object of transaction
+ * @return {Object}              Return object containing status and or error object
  */
-
-const Commit = async (transaction) => {
+library.Rollback = async (transactions) => {
   try {
-    await transaction.commit();
+    await transactions.rollback();
 
-    return {
-      status: true,
-    };
-  } catch (err) {
-    await Rollback(transaction);
-
-    return {
+    return Promise.resolve({
+      status: true
+    });
+  }
+  catch (err) {
+    return Promise.reject({
       status: false,
-      err: err,
-    };
+      err: err
+    });
   }
 };
 
-module.exports = { Create, Rollback, Commit };
+module.exports = library;

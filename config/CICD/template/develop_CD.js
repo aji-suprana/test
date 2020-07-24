@@ -10,9 +10,9 @@ module.exports=
 {
   "name": "Develop-CD",
   "on": {
-    "push": {
+    "pull_request": {
       "branches": [
-        "develop",
+        "develop-stage",
       ]
     }
   },

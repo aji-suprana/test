@@ -1,0 +1,1181 @@
+{
+	"info": {
+		"_postman_id": "dfee2ae3-785f-4a44-a86e-a28819ff343d",
+		"name": "Finance Book",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Jurnal Umum",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-brand",
+								"value": "5370d5af-0925-4b53-8ef9-bec7145b977c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tanggal\": \"2020-07-06\",\n    \"nomor_invoice\": \"JLC-SHYK-200706-007878\",\n    \"modul\": \"KAS BANK\",\n    \"debits\": [{\n        \"rekening\": \"b17621d3-9207-4562-833b-c001fa1b746c\",\n        \"nominal\": 250000\n    }],\n    \"credits\": [{\n        \"rekening\": \"9be5acab-49fe-4ccf-b548-b5e4a0c83c69\",\n        \"nominal\": 250000\n    }]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/jurnal-umum",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"jurnal-umum"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-brand",
+								"type": "text",
+								"value": "5370d5af-0925-4b53-8ef9-bec7145b977c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/jurnal-umum/1c35fbdf-544b-42f4-a793-c0c637b107f2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"jurnal-umum",
+								"1c35fbdf-544b-42f4-a793-c0c637b107f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/jurnal-umum?page=1&per_page=10&nomor_iinvoice=&modul=&brand_id=&start_date&end_date=",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"jurnal-umum"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "nomor_iinvoice",
+									"value": ""
+								},
+								{
+									"key": "modul",
+									"value": ""
+								},
+								{
+									"key": "brand_id",
+									"value": ""
+								},
+								{
+									"key": "start_date",
+									"value": null
+								},
+								{
+									"key": "end_date",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/jurnal-umum/06df748c-dad0-4cb7-97ba-e0db09974b6b",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"jurnal-umum",
+								"06df748c-dad0-4cb7-97ba-e0db09974b6b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tanggal\": \"2020-07-05\",\n    \"modul\": \"piutang\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/jurnal-umum/5134ba74-4901-407a-9e08-df5086781c60",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"jurnal-umum",
+								"5134ba74-4901-407a-9e08-df5086781c60"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Credit",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-brand",
+								"value": "5370d5af-0925-4b53-8ef9-bec7145b977c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jurnal_umum_id\": \"dab1a551-cfaa-494e-bc0b-a37f9d655dd5\",\n    \"rekening_bulan_id\": \"50dd2044-4171-4a5e-8fe4-c4412f58ae1b\",\n    \"rekening_id\": \"b17621d3-9207-4562-833b-c001fa1b746c\",\n    \"nominal\": 20.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/credit",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"credit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rekening_id\": \"dab1a551-cfaa-494e-bc0b-a37f9d655dd5\",\n    \"rekening_bulan_id\": \"50dd2044-4171-4a5e-8fe4-c4412f58ae1b\",\n    \"nominal\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/credit/46918454-1e97-40b5-9a49-07b15db8f885",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"credit",
+								"46918454-1e97-40b5-9a49-07b15db8f885"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/credit/46918454-1e97-40b5-9a49-07b15db8f885",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"credit",
+								"46918454-1e97-40b5-9a49-07b15db8f885"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/credit/4f4f221b-5733-4c8a-8fdc-3d68811b61f4",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"credit",
+								"4f4f221b-5733-4c8a-8fdc-3d68811b61f4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/credit?pag=1&per_page=10&rekening_id=9be5acab-49fe-4ccf-b548-b5e4a0c83c69&rekening_bulan_id=413c1f1c-aedd-4f3c-95b7-5cf2472470be&jurnal_umum_id=06df748c-dad0-4cb7-97ba-e0db09974b6b",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"credit"
+							],
+							"query": [
+								{
+									"key": "pag",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "rekening_id",
+									"value": "9be5acab-49fe-4ccf-b548-b5e4a0c83c69"
+								},
+								{
+									"key": "rekening_bulan_id",
+									"value": "413c1f1c-aedd-4f3c-95b7-5cf2472470be"
+								},
+								{
+									"key": "jurnal_umum_id",
+									"value": "06df748c-dad0-4cb7-97ba-e0db09974b6b"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Debit",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-brand",
+								"value": "5370d5af-0925-4b53-8ef9-bec7145b977c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jurnal_umum_id\": \"dab1a551-cfaa-494e-bc0b-a37f9d655dd5\",\n    \"rekening_bulan_id\": \"50dd2044-4171-4a5e-8fe4-c4412f58ae1b\",\n    \"rekening_id\": \"b17621d3-9207-4562-833b-c001fa1b746c\",\n    \"nominal\": 20.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/debit",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"debit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rekening_id\": \"dab1a551-cfaa-494e-bc0b-a37f9d655dd5\",\n    \"rekening_bulan_id\": \"50dd2044-4171-4a5e-8fe4-c4412f58ae1b\",\n    \"nominal\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/debit/251e42eb-6349-4eb1-b823-321ee65f3dd2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"debit",
+								"251e42eb-6349-4eb1-b823-321ee65f3dd2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/debit/251e42eb-6349-4eb1-b823-321ee65f3dd2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"debit",
+								"251e42eb-6349-4eb1-b823-321ee65f3dd2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/debit/251e42eb-6349-4eb1-b823-321ee65f3dd2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"debit",
+								"251e42eb-6349-4eb1-b823-321ee65f3dd2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/debit?pag=1&per_page=10&rekening_id=9be5acab-49fe-4ccf-b548-b5e4a0c83c69&rekening_bulan_id=&jurnal_umum_id=",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"debit"
+							],
+							"query": [
+								{
+									"key": "pag",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "rekening_id",
+									"value": "9be5acab-49fe-4ccf-b548-b5e4a0c83c69"
+								},
+								{
+									"key": "rekening_bulan_id",
+									"value": ""
+								},
+								{
+									"key": "jurnal_umum_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Rekening Tahun",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-brand",
+								"value": "5370d5af-0925-4b53-8ef9-bec7145b977c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tahun\": 2021,\n    \"rekening_id\": \"9be5acab-49fe-4ccf-b548-b5e4a0c83c69\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening-tahun",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening-tahun"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rekening_id\": \"9be5acab-49fe-4ccf-b548-b5e4a0c83c69\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening-tahun/5f584af9-c668-4c54-bb09-29c3907943f8",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening-tahun",
+								"5f584af9-c668-4c54-bb09-29c3907943f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening-tahun/5f584af9-c668-4c54-bb09-29c3907943f8",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening-tahun",
+								"5f584af9-c668-4c54-bb09-29c3907943f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening-tahun?rekening_id=b17621d3-9207-4562-833b-c001fa1b746c&tahun=",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening-tahun"
+							],
+							"query": [
+								{
+									"key": "rekening_id",
+									"value": "b17621d3-9207-4562-833b-c001fa1b746c"
+								},
+								{
+									"key": "tahun",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening-tahun/5f584af9-c668-4c54-bb09-29c3907943f8",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening-tahun",
+								"5f584af9-c668-4c54-bb09-29c3907943f8"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Rekening Bulan",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-brand",
+								"value": "5370d5af-0925-4b53-8ef9-bec7145b977c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bulan\": 7,\n    \"tahun\": 2021,\n    \"rekening_id\": \"9be5acab-49fe-4ccf-b548-b5e4a0c83c69\",\n    \"rekening_tahun_id\": \"d3960636-068b-4645-acdb-93ec2ab71542\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening-bulan",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening-bulan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rekening_id\": \"9be5acab-49fe-4ccf-b548-b5e4a0c83c69\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening-bulan/b7022fff-7d83-412e-a87c-6927d0821be2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening-bulan",
+								"b7022fff-7d83-412e-a87c-6927d0821be2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening-bulan/b7022fff-7d83-412e-a87c-6927d0821be2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening-bulan",
+								"b7022fff-7d83-412e-a87c-6927d0821be2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening-bulan?rekening_id=b17621d3-9207-4562-833b-c001fa1b746c&tahun=&bulan=",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening-bulan"
+							],
+							"query": [
+								{
+									"key": "rekening_id",
+									"value": "b17621d3-9207-4562-833b-c001fa1b746c"
+								},
+								{
+									"key": "tahun",
+									"value": ""
+								},
+								{
+									"key": "bulan",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening-bulan/b7022fff-7d83-412e-a87c-6927d0821be2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening-bulan",
+								"b7022fff-7d83-412e-a87c-6927d0821be2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Kelompok",
+			"item": [
+				{
+					"name": "Find All Kelompoks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/kelompok",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"kelompok"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One Kelompok",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/kelompok/b7022fff-7d83-412e-a87c-6927d0821be2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"kelompok",
+								"b7022fff-7d83-412e-a87c-6927d0821be2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Sub Kelompok",
+			"item": [
+				{
+					"name": "Find All Sub Kelompoks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/sub-kelompok",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"sub-kelompok"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One Sub Kelompok",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/sub-kelompok/b7022fff-7d83-412e-a87c-6927d0821be2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"sub-kelompok",
+								"b7022fff-7d83-412e-a87c-6927d0821be2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Jenis Rekening",
+			"item": [
+				{
+					"name": "Create New Jenis Rekening",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-brand",
+								"value": "0f038496-cf75-4948-ba09-5403ff2b2549",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"AAAAbbbb\",\r\n    \"nomor_jenis_rekening\": \"0101010101\",\r\n    \"sub_kelompok_id\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/jenis-rekening",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"jenis-rekening"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All Jenis Rekenings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/jenis-rekening",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"jenis-rekening"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One Jenis Rekening",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/jenis-rekening/b7022fff-7d83-412e-a87c-6927d0821be2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"jenis-rekening",
+								"b7022fff-7d83-412e-a87c-6927d0821be2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Jenis Rekening",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"Master\",\r\n    \"nomor_jenis_rekening\": \"22222222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/jenis-rekening/b7022fff-7d83-412e-a87c-6927d0821be2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"jenis-rekening",
+								"b7022fff-7d83-412e-a87c-6927d0821be2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Jenis Rekening",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/jenis-rekening/b7022fff-7d83-412e-a87c-6927d0821be2",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"jenis-rekening",
+								"b7022fff-7d83-412e-a87c-6927d0821be2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Rekening",
+			"item": [
+				{
+					"name": "Create New Rekening",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-brand",
+								"value": "b7022fff-7d83-412e-a87c-6927d0821be2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"Hebat\",\r\n    \"nomor_rekening\": \"12392183117504\",\r\n    \"jenis_rekening_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All Rekenings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One Rekening",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening/cfe753bf-4318-42a8-a329-1daf1ef905b9",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening",
+								"cfe753bf-4318-42a8-a329-1daf1ef905b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Rekening",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"Hebat Sekali\",\r\n    \"nomor_rekening\": \"123131213\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening/cfe753bf-4318-42a8-a329-1daf1ef905b9",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening",
+								"cfe753bf-4318-42a8-a329-1daf1ef905b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Rekening",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/rekening/cfe753bf-4318-42a8-a329-1daf1ef905b9",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rekening",
+								"cfe753bf-4318-42a8-a329-1daf1ef905b9"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "df29de25-edec-49f3-ac2f-04a5cb7a33c1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9ca204c3-5ece-46e8-bf92-6bcac0cc6845",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a0eb503f-76c9-4c28-b4d7-3d6c34b50a23",
+			"key": "host",
+			"value": "localhost"
+		},
+		{
+			"id": "f6cdd0c7-39e0-4d2e-b087-c28dea703975",
+			"key": "port",
+			"value": "3000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
