@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
+    "cli-interact": "^0.1.9",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -24,6 +25,7 @@
     "flaverr": "^1.10.0",
     "fs": "0.0.1-security",
     "helmet": "^3.22.0",
+    "json-to-env": "0.0.10",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "mysql2": "^2.1.0",

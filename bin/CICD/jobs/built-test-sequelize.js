@@ -31,6 +31,10 @@ module.exports = {
                 "id": "extract_branch"
             },
             {
+                "name": ".env generation",
+                "run": "node ./env/json_environments"
+            },
+            {
                 "name": "setup test database",
                 "run": "npm install sequelize-cli\nNODE_ENV=test npx sequelize-cli db:create --env test \nNODE_ENV=test npx sequelize-cli db:migrate --env test\n"
             },

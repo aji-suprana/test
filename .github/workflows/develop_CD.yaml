@@ -26,6 +26,8 @@ jobs:
         shell: bash
         run: 'echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"'
         id: extract_branch
+      - name: .env generation
+        run: node ./env/json_environments
       - name: setup test database
         run: |
           npm install sequelize-cli

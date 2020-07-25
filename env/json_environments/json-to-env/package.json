@@ -1,0 +1,66 @@
+{
+  "_from": "json-to-env",
+  "_id": "json-to-env@0.0.10",
+  "_inBundle": false,
+  "_integrity": "sha512-PW3xFvL8I9gR/iW05k3xYGVcmCP9ZJbiG8+AvWcluWlGhMBToQDhWLxBUBcbjPESlBkD2NPvacn2XnxgDKqtdA==",
+  "_location": "/json-to-env",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "json-to-env",
+    "name": "json-to-env",
+    "escapedName": "json-to-env",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/json-to-env/-/json-to-env-0.0.10.tgz",
+  "_shasum": "229e79b34bbbfa0ca4a66baf6381e55c904542fe",
+  "_spec": "json-to-env",
+  "_where": "C:\\Projects\\S3\\Projects\\Applications\\vobis\\v2.0.1\\test",
+  "author": {
+    "name": "R.A. Lucas",
+    "email": "richard@richardalucas.com",
+    "url": "ralucas.github.io"
+  },
+  "bin": {
+    "json-to-env": "index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/ralucas/json-to-env/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Convert json to key-value environment pairs",
+  "devDependencies": {
+    "gulp": "^3.6.0",
+    "gulp-eslint": "^0.15.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.9.0",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^0.4.5",
+    "gulp-plumber": "^1.0.0"
+  },
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "homepage": "https://github.com/ralucas/json-to-env#readme",
+  "keywords": [],
+  "license": "Unlicense",
+  "main": "lib/index.js",
+  "name": "json-to-env",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ralucas/json-to-env.git"
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "version": "0.0.10"
+}
