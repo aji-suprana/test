@@ -47,7 +47,7 @@ module.exports={
             "env": {
             "ECR_REGISTRY": "${{ steps.login-ecr.outputs.registry }}",
             "ECR_REPOSITORY": CICD_config.ECR_REPOSITORY,
-            "IMAGE_TAG": CICD_config.IMAGE_TAG.nodeApp
+            "IMAGE_TAG": CICD_config.IMAGE_TAG.db
             },
             "run": "docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/db/Dockerfile .\ndocker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\necho \"::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\"\n"
         }
