@@ -1,10 +1,10 @@
 'on':
-  - pull_request:
-      branches:
-        - develop-stage
-  - push:
-      branches:
-        - develop-stage
+  pull_request:
+    branches:
+      - develop-stage
+  push:
+    branches:
+      - develop-stage
 jobs:
   buildTest:
     name: Build and Run Unit Test
