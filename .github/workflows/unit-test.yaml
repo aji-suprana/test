@@ -1,11 +1,10 @@
-name: Develop-CI
 'on':
   push:
     branches:
       - develop
       - release/*
-      - master
-      - feature/cicd
+      - hotfix/*
+      - feature/*
 jobs:
   buildTest:
     name: Build and Run Unit Test
