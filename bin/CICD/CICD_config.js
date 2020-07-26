@@ -1,7 +1,7 @@
 
 
-var appName = 'vbs-barang';
-var dbName = 'vbs-barang-db';
+var appName = 'vbs-test';
+var dbName = 'vbs-test-db';
 
 if(appName == 'sandbox')
 {
