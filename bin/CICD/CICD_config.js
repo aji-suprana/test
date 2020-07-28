@@ -1,7 +1,6 @@
 
 
 var appName = 'vbs-test';
-var dbName = 'vbs-test-db';
 
 if(appName == 'sandbox')
 {
@@ -10,10 +9,10 @@ if(appName == 'sandbox')
 
 module.exports=
 {
-    "ECR_REPOSITORY": "my-ecr-repo",
+    "ECR_REPOSITORY": appName+'-repo',
     "IMAGE_TAG":
     {
         'nodeApp':appName,
-        'db' : dbName
+        'db' : appName+'-db'
     }
 }
