@@ -7,7 +7,7 @@
         {
             "name": "upmesh-backend-dev",
             "hostname": "upmesh-backend-dev",
-            "image": "058434268238.dkr.ecr.ap-southeast-1.amazonaws.com/upmesh-backend:dev",
+            "image": "734320562459.dkr.ecr.ap-southeast-1.amazonaws.com/vbs-test:vbs-test",
             "resourceRequirements": null,
             "essential": false,
             "memory":300,
