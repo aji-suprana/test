@@ -22,7 +22,7 @@
             ],
             "entryPoint": [
                 "sh",
-                "/usr/local/bin/dev-entrypoint.sh"
+                "/usr/local/bin/entrypoint.sh"
             ],
             "logConfiguration": {
                 "logDriver": "awslogs",
