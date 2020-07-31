@@ -1,7 +1,6 @@
 
 
 var appName = 'vbs-authorization';
-var dbName = 'vbs-authorization-db';
 
 if(appName == 'sandbox')
 {
@@ -14,6 +13,6 @@ module.exports=
     "IMAGE_TAG":
     {
         'nodeApp':appName,
-        'db' : dbName
+        'db' : appName + '-db'
     }
 }

@@ -71,17 +71,3 @@ jobs:
 
           echo "::set-output
           name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-      - name: MYSQL image
-        id: build-mysql-image
-        env:
-          ECR_REGISTRY: '${{ steps.login-ecr.outputs.registry }}'
-          ECR_REPOSITORY: my-ecr-repo
-          IMAGE_TAG: vbs-authorization
-        run: >
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
-          docker/db/Dockerfile .
-
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-
-          echo "::set-output
-          name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
