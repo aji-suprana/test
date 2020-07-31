@@ -3,7 +3,7 @@ const CICD_config = require("../CICD_config")
 module.exports={
     "name": "deploy",
     "content":{
-        "name": "Upload Image to ECR",
+        "name": "Deploy to ECS",
         "runs-on": "ubuntu-latest",
         "needs" : "uploadImage",
         "steps": [
