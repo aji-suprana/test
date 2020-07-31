@@ -1,6 +1,6 @@
 name: Develop-CD
 'on':
-  pull_request:
+  push:
     branches:
       - develop-stage
 jobs:
@@ -57,12 +57,12 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-      - name: vbs-barangIMAGE
+      - name: vbs-authorizationIMAGE
         id: build-master-image
         env:
           ECR_REGISTRY: '${{ steps.login-ecr.outputs.registry }}'
           ECR_REPOSITORY: my-ecr-repo
-          IMAGE_TAG: vbs-barang
+          IMAGE_TAG: vbs-authorization
         run: >
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
           docker/nodeapp/Dockerfile .
@@ -76,7 +76,7 @@ jobs:
         env:
           ECR_REGISTRY: '${{ steps.login-ecr.outputs.registry }}'
           ECR_REPOSITORY: my-ecr-repo
-          IMAGE_TAG: vbs-barang
+          IMAGE_TAG: vbs-authorization
         run: >
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
           docker/db/Dockerfile .

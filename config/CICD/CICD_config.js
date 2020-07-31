@@ -1,7 +1,7 @@
 
 
-var appName = 'vbs-authorization';
-var dbName = 'vbs-authorization-db';
+var appName = 'sandbox';
+var dbName = 'sandbox';
 
 if(appName == 'sandbox')
 {

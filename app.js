@@ -10,7 +10,13 @@ const routes = require('./routes');
 const { notFound, errorStack } = require('./app/middlewares/errorHandlers');
 
 const app = express();
-require('./app/models');
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+//require('./app/models');
+
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -1,18 +1,15 @@
+const CICD_config = require("../CICD_config")
 const buildSequelize = require('../jobs/built-test-sequelize')
-const uploadImage = require('../jobs/uploadImage')
-
 const constructJobs = {}
 
 constructJobs[buildSequelize.name] = buildSequelize.content;
-constructJobs[uploadImage.name] = uploadImage.content;
-
 module.exports=
 {
-  "name": "Develop-CD",
+  "name": "Develop-CI",
   "on": {
     "push": {
       "branches": [
-        "develop-stage",
+        "develop",
       ]
     }
   },

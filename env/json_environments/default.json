@@ -1,10 +1,10 @@
 {
   "NODE_ENV": "development",
-  "PORT": 1335,
+  "PORT": "1335",
 
   "CIPHER_ALGORITHM": "aes-256-cbc",
   "CIPHER_KEY": "VOBIS20",
-  "CIPHER_BLOCK_SIZE": 16,
+  "CIPHER_BLOCK_SIZE": "16",
 
   "SERVER_SECRET": "VOBIS20",
   "JWT_SECRET": "VOBIS20",

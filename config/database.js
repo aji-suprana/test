@@ -13,6 +13,13 @@ module.exports = {
     host: process.env.DB_DATABASE_STAGING,
     dialect: 'mysql',
   },
+  local: {
+    username: process.env.DB_USERNAME_STAGING,
+    password: process.env.DB_PASSWORD_STAGING,
+    database: process.env.DB_DATABASE_STAGING,
+    host: process.env.DB_DATABASE_STAGING,
+    dialect: 'mysql',
+  },
   test: {
     username: process.env.DB_USERNAME_TEST,
     password: process.env.DB_PASSWORD_TEST,
