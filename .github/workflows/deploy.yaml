@@ -53,12 +53,12 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-      - name: testIMAGE
+      - name: vbs-testIMAGE
         id: build-master-image
         env:
           ECR_REGISTRY: '${{ steps.login-ecr.outputs.registry }}'
-          ECR_REPOSITORY: test
-          IMAGE_TAG: test
+          ECR_REPOSITORY: vbs-test
+          IMAGE_TAG: vbs-test
         run: >
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f
           docker/nodeapp/Dockerfile .
