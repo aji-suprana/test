@@ -10,47 +10,6 @@
             "image": "734320562459.dkr.ecr.ap-southeast-1.amazonaws.com/vbs-test:vbs-test",
             "resourceRequirements": null,
             "essential": false,
-            "memory":300,
-            "cpu":150,
-            "portMappings": [
-                {
-                    "containerPort": "1335",
-                    "hostPort": "1335",
-                    "protocol": "tcp"
-                }
-                
-            ],
-            "entryPoint": [
-                "sh",
-                "/usr/local/bin/entrypoint.sh"
-            ],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-group": "ECS-cluster",
-                    "awslogs-region": "ap-southeast-1",
-                    "awslogs-stream-prefix": "backend-dev"
-                }
-            }
-        }
-    ],
-    "taskRoleArn": "",
-    "family": "rest-template-sql",
-    "placementConstraints": []
-}
-
-{
-    "requiresCompatibilities": [
-        "EC2"
-    ],
-    "inferenceAccelerators": [],
-    "containerDefinitions": [
-        {
-            "name": "upmesh-backend-dev",
-            "hostname": "upmesh-backend-dev",
-            "image": "734320562459.dkr.ecr.ap-southeast-1.amazonaws.com/vbs-test:vbs-test",
-            "resourceRequirements": null,
-            "essential": false,
             "memory":200,
             "cpu":150,
             "portMappings": [
