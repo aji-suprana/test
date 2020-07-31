@@ -24,10 +24,6 @@ jobs:
           node-version: '10'
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Extract branch name
-        shell: bash
-        run: 'echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"'
-        id: extract_branch
       - name: .env generation
         run: node ./env/json_environments
       - name: setup test database
