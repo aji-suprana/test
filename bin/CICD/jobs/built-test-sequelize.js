@@ -25,6 +25,12 @@ module.exports = {
                 "uses": "actions/checkout@v1"
             },
             {
+                "name": "Extract branch name",
+                "shell": "bash",
+                "run": "echo \"##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})\"",
+                "id": "extract_branch"
+            },
+            {
                 "name": ".env generation",
                 "run": "node ./env/json_environments"
             },
