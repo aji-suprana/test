@@ -9,7 +9,7 @@
             "hostname": "upmesh-backend-dev",
             "image": "734320562459.dkr.ecr.ap-southeast-1.amazonaws.com/vbs-test:vbs-test",
             "resourceRequirements": null,
-            "essential": false,
+            "essential": true,
             "memory":200,
             "cpu":150,
             "portMappings": [
