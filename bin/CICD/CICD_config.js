@@ -1,6 +1,6 @@
 
 
-var appName = 'test';
+var appName = 'vbs-test';
 
 if(appName == 'sandbox')
 {
