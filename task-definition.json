@@ -38,3 +38,52 @@
     "family": "rest-template-sql",
     "placementConstraints": []
 }
+
+{
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "inferenceAccelerators": [],
+    "containerDefinitions": [
+        {
+            "name": "upmesh-backend-dev",
+            "hostname": "upmesh-backend-dev",
+            "image": "734320562459.dkr.ecr.ap-southeast-1.amazonaws.com/vbs-test:vbs-test",
+            "resourceRequirements": null,
+            "essential": false,
+            "memory":200,
+            "cpu":150,
+            "portMappings": [
+                {
+                    "containerPort": "1335",
+                    "hostPort": "1335",
+                    "protocol": "tcp"
+                }
+                
+            ],
+            "environment": [
+                {
+                    "name": "WAIT_HOSTS",
+                    "value": "db:3306"
+                }
+            ],
+            "entryPoint": [
+                "sh",
+                "/usr/local/bin/dev-entrypoint.sh"
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "ECS-cluster",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "backend-dev"
+                }
+            }
+        },
+    ],
+    "volumes": [
+    ],
+    "taskRoleArn": "",
+    "family": "upmesh-backend-dev-stage",
+    "placementConstraints": []
+}
