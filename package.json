@@ -28,10 +28,7 @@
     "fs": "0.0.1-security",
     "fs-extra": "^9.0.1",
     "helmet": "^3.22.0",
-<<<<<<< HEAD
     "jade": "^1.11.0",
-=======
->>>>>>> 4ec7f2037b8bb214d4b27d9aac4db00135576e49
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "mysql2": "^2.1.0",
