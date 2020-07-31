@@ -67,6 +67,13 @@ jobs:
 
           echo "::set-output
           name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+      - name: Deploy Amazon ECS dev-stage & dev-live task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          service: test-service
+          cluster: test-cluster
+          wait-for-service-stability: true
   deploy:
     name: Deploy to ECS
     runs-on: ubuntu-latest
