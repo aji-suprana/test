@@ -38,7 +38,7 @@
                     "awslogs-stream-prefix": "backend-dev"
                 }
             }
-        },
+        }
     ],
     "volumes": [
     ],
