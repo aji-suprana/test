@@ -8,10 +8,19 @@ constructJobs[uploadImage.name] = uploadImage.content;
 
 module.exports=
 {
-  "name": "Develop-CD",
-  "on": {
-    "pull_request": {
-      "branches": [
+  "on": 
+  {
+    "pull_request": 
+    {
+      "branches": 
+      [
+        "develop-stage",
+      ]
+    },
+    "push":
+    {
+      "branches": 
+      [
         "develop-stage",
       ]
     }

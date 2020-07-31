@@ -5,14 +5,13 @@ const constructJobs = {}
 constructJobs[buildSequelize.name] = buildSequelize.content;
 module.exports=
 {
-  "name": "Develop-CI",
   "on": {
     "push": {
       "branches": [
         "develop",
         "release/*",
-        "master",
-        "feature/cicd"
+        "hotfix/*",
+        "feature/*"
       ]
     }
   },

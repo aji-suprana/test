@@ -1,11 +1,11 @@
-name: Develop-CI
 'on':
   push:
     branches:
+      - develop-stage
       - develop
       - release/*
-      - master
-      - feature/cicd
+      - hotfix/*
+      - feature/*
 jobs:
   buildTest:
     name: Build and Run Unit Test
@@ -24,19 +24,12 @@ jobs:
         with:
           node-version: '10'
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Extract branch name
         shell: bash
         run: 'echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"'
         id: extract_branch
       - name: .env generation
         run: node ./env/json_environments
-      - name: setup test database
-        run: |
-          npm install sequelize-cli
-          NODE_ENV=test npx sequelize-cli db:create --env test 
-          NODE_ENV=test npx sequelize-cli db:migrate --env test
-      - name: Unit Testing
-        run: |
-          npm install jest
-          npm test
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'

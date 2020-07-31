@@ -9,10 +9,10 @@ if(appName == 'sandbox')
 
 module.exports=
 {
-    "ECR_REPOSITORY": "my-ecr-repo",
+    "ECR_REPOSITORY": appName+'-repo',
     "IMAGE_TAG":
     {
         'nodeApp':appName,
-        'db' : appName + '-db'
+        'db' : appName+'-db'
     }
 }
