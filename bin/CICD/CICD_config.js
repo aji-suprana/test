@@ -1,6 +1,6 @@
 
 
-var appName = 'vbs-authorization';
+var appName = 'test';
 
 if(appName == 'sandbox')
 {
@@ -9,7 +9,7 @@ if(appName == 'sandbox')
 
 module.exports=
 {
-    "ECR_REPOSITORY": appName+'-repo',
+    "ECR_REPOSITORY": appName,
     "IMAGE_TAG":
     {
         'nodeApp':appName,
