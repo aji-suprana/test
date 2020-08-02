@@ -6,8 +6,8 @@ const debug = require('../../../app/services/debug');
 const recurseFile = require('./helper/recurseFile')
 const path = require('path')
 // Get document, or throw exception on error
-
-module.exports = (args) => {
+const fse = require('fs-extra');
+module.exports = async (args) => {
     try {
         var argv = args;
         if (!argv._[1]) {
@@ -29,6 +29,9 @@ module.exports = (args) => {
         //     }
         // });
         var configPath = path.resolve(__dirname,'../template');
+        await fse.ensureDir(path.resolve(__dirname,'../../../.github/workflows'));
+
+
         if(!fs.existsSync(configPath))
         {
             debug.logError(configPath + ' does not exist');

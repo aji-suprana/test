@@ -1,11 +1,11 @@
 const CICD_config = require("../CICD_config")
 
 module.exports={
-    "name": "uploadImage",
+    "name": "deploy",
     "content":{
-        "name": "Upload Image to ECR",
+        "name": "Deploy to ECS",
         "runs-on": "ubuntu-latest",
-        "needs" : "buildTest",
+        "needs" : "uploadImage",
         "steps": [
         {
             "name": "Checkout",
@@ -27,19 +27,15 @@ module.exports={
             }
         },
         {
-            "name": "Login to Amazon ECR",
-            "id": "login-ecr",
-            "uses": "aws-actions/amazon-ecr-login@v1"
-        },
-        {
-            "name": CICD_config.IMAGE_TAG.nodeApp + "IMAGE",
-            "id": "build-master-image",
-            "env": {
-            "ECR_REGISTRY": "${{ steps.login-ecr.outputs.registry }}",
-            "ECR_REPOSITORY": CICD_config.ECR_REPOSITORY,
-            "IMAGE_TAG": CICD_config.IMAGE_TAG.nodeApp
-            },
-            "run": "docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f docker/nodeapp/Dockerfile .\ndocker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\necho \"::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\"\n"
+          "name" : "Deploy Amazon ECS dev-stage & dev-live task definition",
+          "uses" : "aws-actions/amazon-ecs-deploy-task-definition@v1",
+          "with":
+            {
+              "task-definition": "task-definition.json",
+              "service": "test-service",
+              "cluster": "test-cluster",
+              "wait-for-service-stability": true   
+            }
         }
         ]
     },

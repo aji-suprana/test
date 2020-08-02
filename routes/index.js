@@ -1,8 +1,10 @@
 const fileSystem = require('../app/services/fileSystem');
 const decryptToken = require('../app/middlewares/decrypt-jwt-token');
 const debug = require('../app/services/debug')
+const fs = require('fs')
+const path = require('path')
 var routers = [];
-
+var routePaths = []
 fileSystem.listAllFile(__dirname, '.js', false, requireAllRouter);
 
 function requireAllRouter(fileName) {
@@ -14,6 +16,7 @@ function requireAllRouter(fileName) {
       path: path,
       routeProps: curRoute,
     });
+    routePaths.push(path);
   }
 }
 
@@ -25,6 +28,23 @@ routers.forEach(route=>{
 })
 
 module.exports = (app) => {
+    var packageRaw = fs.readFileSync(path.join(__dirname,'../package.json'));
+    var packageJSON = JSON.parse(packageRaw);
+
+    debug.logData("package",packageJSON)
+    /* GET home page. */
+    app.get("/", function (req, res, next) {
+      // res.status(200).json({
+      //   test:"halohalo"
+      // });
+      res.render("index", {
+        title: packageJSON.name,
+        env: process.env.NODE_ENV,
+        port: process.env.PORT || 3000,
+        endPoints: routePaths
+    });
+  });
+
   routers.forEach((item, index) => {
     var middlewares = []
     if(item.routeProps.needAuth == true)
