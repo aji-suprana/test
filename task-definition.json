@@ -28,7 +28,7 @@
                 "options": {
                     "awslogs-group": "ECS-cluster",
                     "awslogs-region": "ap-southeast-1",
-                    "awslogs-stream-prefix": "backend-dev"
+                    "awslogs-stream-prefix": "vbs-test"
                 }
             }
         }
@@ -36,6 +36,6 @@
     "volumes": [
     ],
     "taskRoleArn": "",
-    "family": "upmesh-backend-dev-stage",
+    "family": "vbs-test",
     "placementConstraints": []
 }
