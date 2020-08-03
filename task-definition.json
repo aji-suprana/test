@@ -19,12 +19,6 @@
                     "protocol": "tcp"
                 }
             ],
-            "environment": [
-                {
-                    "name": "WAIT_HOSTS",
-                    "value": "db:3306"
-                }
-            ],
             "entryPoint": [
                 "sh",
                 "/usr/local/bin/dev-entrypoint.sh"
