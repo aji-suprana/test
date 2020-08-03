@@ -5,8 +5,8 @@
     "inferenceAccelerators": [],
     "containerDefinitions": [
         {
-            "name": "upmesh-backend-dev",
-            "hostname": "upmesh-backend-dev",
+            "name": "vbs-test",
+            "hostname": "vbs-test",
             "image": "734320562459.dkr.ecr.ap-southeast-1.amazonaws.com/vbs-test:vbs-test",
             "resourceRequirements": null,
             "essential": true,
