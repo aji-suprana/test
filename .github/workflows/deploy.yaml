@@ -92,5 +92,5 @@ jobs:
         with:
           task-definition: task-definition.json
           service: test-service
-          cluster: test-cluster
+          cluster: vobis-clust
           wait-for-service-stability: true
